@@ -23,3 +23,8 @@ export const createList = async (body: ListCreateBody) => {
   })
   return res.data
 }
+
+export const deleteList = async (id: string) => {
+  const res = await todoApi.delete(`/list/${id}`)
+  return res.data
+}

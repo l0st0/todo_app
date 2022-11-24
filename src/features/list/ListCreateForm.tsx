@@ -32,7 +32,7 @@ const ListCreateForm = () => {
     mutate(values, { onSuccess: () => reset() })
 
   return (
-    <div className="flex w-full flex-col">
+    <>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="items-top flex w-full flex-col gap-2 sm:flex-row"
@@ -61,7 +61,7 @@ const ListCreateForm = () => {
       </form>
 
       {isError && <ErrorMessage>{t('errors.isError')}</ErrorMessage>}
-    </div>
+    </>
   )
 }
 

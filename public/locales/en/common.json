@@ -1,5 +1,6 @@
 {
   "loading": "Loading",
+  "back": "Back",
   "errors": {
     "isError": "Oops, something went wrong! Please try again :(",
     "isRequired": "{{label}} is required."
@@ -8,6 +9,10 @@
     "name": "Name"
   },
   "new_list": {
-    "button": "Create new list"
+    "button": "Create new list",
+    "loading": "Loading lists"
+  },
+  "list": {
+    "loading": "Loading todos"
   }
 }

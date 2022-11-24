@@ -40,3 +40,16 @@ export const useCreateList = () => {
     }
   )
 }
+
+export const useDeleteList = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation((id: string) => todoServices.deleteList(id), {
+    onError: (error: AxiosError) => {
+      console.error('error', error)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(keys.lists)
+    },
+  })
+}

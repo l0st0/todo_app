@@ -20,7 +20,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <main
       className={clsx(
-        'mx-auto flex w-full max-w-4xl flex-col items-center px-4 font-open_sans',
+        'mx-auto w-full max-w-4xl px-4 font-open_sans',
         fredoka_one.variable,
         open_sans.variable
       )}
