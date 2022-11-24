@@ -13,7 +13,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         {...rest}
         className={twMerge(
           'input-bordered input-primary input w-full',
-          error && 'text-error',
+          error && 'input-error',
           className
         )}
       />
