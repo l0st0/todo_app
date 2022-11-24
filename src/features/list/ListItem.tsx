@@ -23,8 +23,9 @@ const ListItem = ({ id, name, createdAt }: ListItemProps) => {
       </Link>
       <Button
         onClick={onDeleteList}
-        className="btn-ghost btn-square"
-        iconStart={<TrashIcon className="w-4 text-red-500" />}
+        className="btn-ghost"
+        icon={<TrashIcon className="w-4 text-red-500" />}
+        iconOnly
         isLoading={isLoading}
       />
     </div>

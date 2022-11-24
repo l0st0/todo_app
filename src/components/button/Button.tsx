@@ -3,24 +3,41 @@ import { twMerge } from 'tailwind-merge'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
-  iconStart?: React.ReactNode
+  icon?: React.ReactNode
+  iconPosition?: 'start' | 'end'
+  iconOnly?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, isLoading, className, iconStart, ...rest }, ref) => {
+  (
+    {
+      children,
+      isLoading,
+      className,
+      icon,
+      iconPosition = 'start',
+      iconOnly,
+      ...rest
+    },
+    ref
+  ) => {
+    const displayIcon = !isLoading ? icon : null
+
     return (
       <button
         ref={ref}
         {...rest}
         className={twMerge(
           'btn',
-          iconStart && 'gap-2',
+          icon && 'gap-2',
+          iconOnly && 'btn-square',
           isLoading && 'loading gap-0',
           className
         )}
       >
-        {!isLoading && iconStart}
+        {iconPosition === 'start' && displayIcon}
         {children}
+        {iconPosition === 'end' && displayIcon}
       </button>
     )
   }

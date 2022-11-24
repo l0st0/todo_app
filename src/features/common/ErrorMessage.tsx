@@ -17,7 +17,11 @@ const ErrorMessage = ({
   return (
     <p
       {...rest}
-      className={twMerge('text-error', !display && 'hidden', className)}
+      className={twMerge(
+        'my-2 text-center text-error',
+        !display && 'hidden',
+        className
+      )}
     >
       {children || t('errors.isError')}
     </p>

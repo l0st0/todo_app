@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import TodoCreateForm from 'src/features/todo/TodoCreateForm'
 import { useGetList } from '@/api'
 import { H1 } from '@/components'
-import { BackButton } from '@/features'
+import { BackButton, TodoList } from '@/features'
 import { useRouterQuery } from '@/hooks'
 import { TopHeading } from '@/layouts'
 
@@ -29,6 +29,7 @@ const Todo = () => {
       </TopHeading>
 
       <TodoCreateForm />
+      <TodoList />
     </>
   )
 }

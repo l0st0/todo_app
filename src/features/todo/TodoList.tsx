@@ -1,17 +1,20 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { useGetLists } from '@/api'
+import { useGetTodos } from '@/api'
+import { useRouterQuery } from '@/hooks'
 import ErrorMessage from '../common/ErrorMessage'
 import LoadingData from '../common/LoadingData'
-import ListItem from './ListItem'
+import TodoItem from './TodoItem'
 
-const ListGrid = () => {
+const TodoList = () => {
   const { t } = useTranslation()
+
+  const listId = useRouterQuery('id')
 
   const [parent] = useAutoAnimate<HTMLDivElement>()
 
-  const { data = [], isError, isLoading } = useGetLists()
+  const { data = [], isError, isLoading } = useGetTodos(listId)
 
   return (
     <div className="my-4 w-full">
@@ -19,15 +22,15 @@ const ListGrid = () => {
         <p>{t('new_list.loading')}...</p>
       </LoadingData>
 
-      <ErrorMessage display={isError} />
+      <ErrorMessage className="text-center" display={isError} />
 
-      <div ref={parent} className="grid w-full grid-cols-auto-15 gap-4">
-        {data.map((list) => (
-          <ListItem key={list.id} {...list} />
+      <div ref={parent}>
+        {data.map((todo) => (
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </div>
     </div>
   )
 }
 
-export default ListGrid
+export default TodoList

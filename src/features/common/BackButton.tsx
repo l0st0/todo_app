@@ -12,7 +12,7 @@ const BackButton = () => {
   return (
     <Button
       onClick={() => back()}
-      iconStart={<ArrowSmallLeftIcon className="w-6" />}
+      icon={<ArrowSmallLeftIcon className="w-6" />}
       className="btn-outline"
     >
       {t('back')}
