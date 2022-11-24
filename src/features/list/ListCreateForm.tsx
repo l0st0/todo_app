@@ -35,7 +35,7 @@ const ListCreateForm = () => {
     <div className="flex w-full flex-col">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="items-top flex w-full gap-2"
+        className="items-top flex w-full flex-col gap-2 sm:flex-row"
       >
         <div className="form-control w-full">
           <Controller
