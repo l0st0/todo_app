@@ -16,7 +16,7 @@ const ListItem = ({ id, name, createdAt }: ListItemProps) => {
   return (
     <div className="flex justify-between gap-2 rounded-lg border border-base-content p-4">
       <Link legacyBehavior href={`list/${id}`}>
-        <div className="flex cursor-pointer flex-col gap-1 overflow-hidden">
+        <div className="flex w-full cursor-pointer flex-col gap-1 overflow-hidden">
           <p className="truncate font-semibold">{name}</p>
           <p className="text-sm">{dateTimeAgo(createdAt)}</p>
         </div>

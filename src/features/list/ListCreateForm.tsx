@@ -55,7 +55,7 @@ const ListCreateForm = () => {
           )}
         </div>
 
-        <Button type="submit" isLoading={isLoading}>
+        <Button className="btn-primary" type="submit" isLoading={isLoading}>
           {t('new_list.button')}
         </Button>
       </form>
