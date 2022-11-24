@@ -21,6 +21,7 @@
       "@/features": ["src/features/index.ts"],
       "@/hooks": ["src/hooks/index.ts"],
       "@/layouts": ["src/layouts/index.ts"],
+      "@/lib": ["src/lib/index.ts"],
       "@/styles/*": ["src/styles/*"],
       "@/types": ["src/types/index.ts"],
       "@/utils": ["src/utils/index.ts"]
