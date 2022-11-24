@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError } from 'axios'
-import { DeleteTodoParams, TodoCreateBody } from '@/types'
+import { CreateTodoBody, Todo } from '@/types'
 import * as todoServices from './todoServices'
 
 const keys = {
@@ -8,7 +8,7 @@ const keys = {
 }
 
 export const useGetTodos = (listId?: string) => {
-  return useQuery(keys.todos(listId), () => todoServices.fetchTodos(), {
+  return useQuery(keys.todos(listId), () => todoServices.fetchTodos(listId), {
     onError: (error: AxiosError) => {
       console.error('error', error)
     },
@@ -20,13 +20,13 @@ export const useCreateTodo = (listId: string) => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (newTodo: TodoCreateBody) => todoServices.createTodo(listId, newTodo),
+    (newTodo: CreateTodoBody) => todoServices.createTodo(listId, newTodo),
     {
-      onError: (error: AxiosError) => {
+      onError: (error, newTodo, context) => {
         console.error('error', error)
       },
-      onSuccess: () => {
-        return queryClient.invalidateQueries(keys.todos(listId))
+      onSuccess: async () => {
+        queryClient.invalidateQueries(keys.todos(listId))
       },
     }
   )
@@ -36,12 +36,50 @@ export const useDeleteTodo = (listId: string) => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (params: DeleteTodoParams) => todoServices.deleteTodo(params),
+    (todoId: string) => todoServices.deleteTodo(listId, todoId),
     {
-      onError: (error: AxiosError) => {
-        console.error('error', error)
+      onMutate: async (todoId) => {
+        await queryClient.cancelQueries(keys.todos(listId))
+        const previousTodos = queryClient.getQueryData(
+          keys.todos(listId)
+        ) as Todo[]
+        const updatedTodos = previousTodos.filter((todo) => todo.id !== todoId)
+        queryClient.setQueryData(keys.todos(listId), updatedTodos)
+        return { previousTodos }
       },
-      onSuccess: () => {
+      onError: (error, todoId, context) => {
+        console.error('error', error)
+        queryClient.setQueryData(keys.todos(listId), context?.previousTodos)
+      },
+      onSettled: async () => {
+        queryClient.invalidateQueries(keys.todos(listId))
+      },
+    }
+  )
+}
+
+export const useUpdateTodo = (listId: string, todoId: string) => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    (updatedTodo: Todo) => todoServices.updateTodo(listId, todoId, updatedTodo),
+    {
+      onMutate: async (updatedTodo) => {
+        await queryClient.cancelQueries(keys.todos(listId))
+        const previousTodos = queryClient.getQueryData(
+          keys.todos(listId)
+        ) as Todo[]
+        const updatedTodos = previousTodos.map((todo) =>
+          todo.id === updatedTodo.id ? updatedTodo : todo
+        )
+        queryClient.setQueryData(keys.todos(listId), updatedTodos)
+        return { previousTodos }
+      },
+      onError: (error, updatedTodo, context) => {
+        console.error('error', error)
+        queryClient.setQueryData(keys.todos(listId), context?.previousTodos)
+      },
+      onSettled: async () => {
         queryClient.invalidateQueries(keys.todos(listId))
       },
     }

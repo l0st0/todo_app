@@ -1,5 +1,5 @@
 import { todoListApi } from '@/lib'
-import { List, ListCreateBody } from '@/types'
+import { CreateListBody, List } from '@/types'
 
 export const fetchLists = async () => {
   const res = await todoListApi.get<List[]>('/list?sortBy=createdAt&order=desc')
@@ -11,7 +11,7 @@ export const fetchList = async (id = '') => {
   return res.data
 }
 
-export const createList = async (body: ListCreateBody) => {
+export const createList = async (body: CreateListBody) => {
   const res = await todoListApi.post('/list', {
     ...body,
     // mockapi throws random dates

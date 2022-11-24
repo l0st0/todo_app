@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError } from 'axios'
-import { ListCreateBody } from '@/types'
+import { CreateListBody, List } from '@/types'
 import * as todoServices from './listServices'
 
 const keys = {
@@ -29,7 +29,7 @@ export const useCreateList = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    (newList: ListCreateBody) => todoServices.createList(newList),
+    (newList: CreateListBody) => todoServices.createList(newList),
     {
       onError: (error: AxiosError) => {
         console.error('error', error)
@@ -45,10 +45,18 @@ export const useDeleteList = () => {
   const queryClient = useQueryClient()
 
   return useMutation((id: string) => todoServices.deleteList(id), {
-    onError: (error: AxiosError) => {
-      console.error('error', error)
+    onMutate: async (id) => {
+      await queryClient.cancelQueries(keys.lists)
+      const previousLists = queryClient.getQueryData(keys.lists) as List[]
+      const updatedLists = previousLists.filter((list) => list.id !== id)
+      queryClient.setQueryData(keys.lists, updatedLists)
+      return { previousLists }
     },
-    onSuccess: () => {
+    onError: (error, todoId, context) => {
+      console.error('error', error)
+      queryClient.setQueryData(keys.lists, context?.previousLists)
+    },
+    onSettled: async () => {
       queryClient.invalidateQueries(keys.lists)
     },
   })

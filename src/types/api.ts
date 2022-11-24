@@ -4,7 +4,7 @@ export interface Todo {
   id: string
   listId: string
   title: string
-  done: boolean
+  isDone: boolean
   createdAt: Date
 }
 
@@ -15,17 +15,13 @@ export interface List {
   todos: Todo[]
 }
 
-export interface ListCreateBody {
+export interface CreateListBody {
   name: string
 }
 
-export interface TodoCreateBody {
+export interface CreateTodoBody {
   title: string
   description?: string
   deadline?: Date
-}
-
-export interface DeleteTodoParams {
-  listId: string
-  todoId: string
+  isDone?: boolean
 }
