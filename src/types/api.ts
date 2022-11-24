@@ -18,3 +18,14 @@ export interface List {
 export interface ListCreateBody {
   name: string
 }
+
+export interface TodoCreateBody {
+  title: string
+  description?: string
+  deadline?: Date
+}
+
+export interface DeleteTodoParams {
+  listId: string
+  todoId: string
+}

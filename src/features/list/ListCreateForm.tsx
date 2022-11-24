@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useCreateList } from '@/api'
-import { Button, ErrorMessage, TextInput } from '@/components'
+import { Button, FormControl, FormErrorMessage, TextInput } from '@/components'
 import { tDynamicString } from '@/utils'
+import ErrorMessage from '../common/ErrorMessage'
 
 const scheme = z.object({
   name: z.string().min(1, { message: 'errors.isRequired' }),
@@ -37,30 +38,27 @@ const ListCreateForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="items-top flex w-full flex-col gap-2 sm:flex-row"
       >
-        <div className="form-control w-full">
-          <Controller
-            name="name"
-            control={control}
-            render={({ field }) => (
-              <TextInput {...field} error={!!errors?.name} />
-            )}
-          />
-
-          {errors?.name?.message && (
-            <ErrorMessage>
-              {t(tDynamicString(errors.name.message), {
-                label: t('labels.name'),
-              })}
-            </ErrorMessage>
+        <Controller
+          name="name"
+          control={control}
+          render={({ field }) => (
+            <FormControl>
+              <TextInput {...field} id={field.name} error={!!errors?.name} />
+              <FormErrorMessage display={!!errors?.name}>
+                {t(tDynamicString(errors?.name?.message), {
+                  label: t('labels.name'),
+                })}
+              </FormErrorMessage>
+            </FormControl>
           )}
-        </div>
+        />
 
         <Button className="btn-primary" type="submit" isLoading={isLoading}>
           {t('new_list.button')}
         </Button>
       </form>
 
-      {isError && <ErrorMessage>{t('errors.isError')}</ErrorMessage>}
+      <ErrorMessage display={isError} />
     </>
   )
 }

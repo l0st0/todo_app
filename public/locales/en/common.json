@@ -6,13 +6,17 @@
     "isRequired": "{{label}} is required."
   },
   "labels": {
-    "name": "Name"
+    "name": "Name",
+    "title": "Title",
+    "description": "Description",
+    "deadline": "Deadline"
   },
   "new_list": {
     "button": "Create new list",
     "loading": "Loading lists"
   },
-  "list": {
+  "todo": {
+    "create_button": "Add",
     "loading": "Loading todos"
   }
 }
