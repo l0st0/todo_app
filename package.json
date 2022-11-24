@@ -12,12 +12,17 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.5",
     "@heroicons/react": "^2.0.13",
+    "@hookform/resolvers": "^2.9.10",
     "@next/font": "^13.0.5",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "axios": "^1.2.0",
     "clsx": "^1.2.1",
+    "daisyui": "^2.42.0",
+    "date-fns": "^2.29.3",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "i18next": "^22.0.6",
@@ -26,8 +31,12 @@
     "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.39.5",
     "react-i18next": "^12.0.0",
-    "typescript": "4.9.3"
+    "react-query": "^3.39.2",
+    "tailwind-merge": "^1.8.0",
+    "typescript": "4.9.3",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.4.0",

@@ -1,1 +1,13 @@
-{}
+{
+  "loading": "Loading",
+  "errors": {
+    "isError": "Oops, something went wrong! Please try again :(",
+    "isRequired": "{{label}} is required."
+  },
+  "labels": {
+    "name": "Name"
+  },
+  "new_list": {
+    "button": "Create new list"
+  }
+}

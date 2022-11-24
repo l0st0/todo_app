@@ -16,8 +16,7 @@ const open_sans = Open_Sans({
   variable: '--font-open_sans',
 })
 
-export const RootLayout = ({ children }: RootLayoutProps) => {
-
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <main
       className={clsx(
@@ -30,3 +29,5 @@ export const RootLayout = ({ children }: RootLayoutProps) => {
     </main>
   )
 }
+
+export default RootLayout
