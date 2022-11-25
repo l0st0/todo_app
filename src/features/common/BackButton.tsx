@@ -2,20 +2,20 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/router'
 import { ArrowSmallLeftIcon } from '@heroicons/react/24/solid'
-import { Button } from '@/components'
+import { twMerge } from 'tailwind-merge'
+import { Button, ButtonProps } from '@/components'
 
-const BackButton = () => {
+const BackButton = ({ children, className }: ButtonProps) => {
   const { t } = useTranslation()
-
   const { back } = useRouter()
 
   return (
     <Button
       onClick={() => back()}
       icon={<ArrowSmallLeftIcon className="w-6" />}
-      className="btn-outline"
+      className={twMerge('btn-outline', className)}
     >
-      {t('back')}
+      {children || t('back')}
     </Button>
   )
 }

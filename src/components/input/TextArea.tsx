@@ -1,12 +1,12 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface TextAreaProps
+export interface TextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: boolean
 }
 
-const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ className, error, ...rest }, ref) => {
     return (
       <textarea
@@ -21,5 +21,3 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     )
   }
 )
-
-export default TextArea

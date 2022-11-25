@@ -1,12 +1,12 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface FormErrorMessageProps
+export interface FormErrorMessageProps
   extends React.HTMLAttributes<HTMLParagraphElement> {
   display: boolean
 }
 
-const FormErrorMessage = ({
+export const FormErrorMessage = ({
   children,
   className,
   display,
@@ -25,5 +25,3 @@ const FormErrorMessage = ({
     </p>
   )
 }
-
-export default FormErrorMessage

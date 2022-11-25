@@ -87,7 +87,7 @@ const CustomCalendarContainer = ({
   )
 }
 
-const DatePicker = ({ ...rest }: ReactDatePickerProps) => {
+export const DatePicker = ({ ...rest }: ReactDatePickerProps) => {
   return (
     <ReactDatePicker
       customInput={<ExampleCustomInput />}
@@ -98,5 +98,3 @@ const DatePicker = ({ ...rest }: ReactDatePickerProps) => {
     />
   )
 }
-
-export default DatePicker

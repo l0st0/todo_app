@@ -1,11 +1,12 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface FormLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface FormLabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement> {
   required?: boolean
 }
 
-const FormLabel = ({
+export const FormLabel = ({
   children,
   className,
   required,
@@ -19,5 +20,3 @@ const FormLabel = ({
     </label>
   )
 }
-
-export default FormLabel

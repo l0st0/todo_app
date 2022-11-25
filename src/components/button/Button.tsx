@@ -1,14 +1,15 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
   icon?: React.ReactNode
   iconPosition?: 'start' | 'end'
   iconOnly?: boolean
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       children,
@@ -42,5 +43,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
-
-export default Button

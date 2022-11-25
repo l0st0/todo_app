@@ -2,11 +2,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
-interface SpinnerProps extends React.SVGProps<SVGSVGElement> {
+export interface SpinnerProps extends React.SVGProps<SVGSVGElement> {
   className?: string
 }
 
-const Spinner = ({ className, ...rest }: SpinnerProps) => {
+export const Spinner = ({ className, ...rest }: SpinnerProps) => {
   const { t } = useTranslation()
 
   return (
@@ -35,5 +35,3 @@ const Spinner = ({ className, ...rest }: SpinnerProps) => {
     </div>
   )
 }
-
-export default Spinner

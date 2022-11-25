@@ -1,16 +1,18 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface CheckBoxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const CheckBox = ({ className, ...rest }: CheckBoxProps) => {
-  return (
-    <input
-      {...rest}
-      type="checkbox"
-      className={twMerge('checkbox', className)}
-    />
-  )
-}
-
-export default CheckBox
+export const CheckBox = React.forwardRef<HTMLInputElement, CheckBoxProps>(
+  ({ className, ...rest }, ref) => {
+    return (
+      <input
+        ref={ref}
+        {...rest}
+        type="checkbox"
+        className={twMerge('checkbox', className)}
+      />
+    )
+  }
+)

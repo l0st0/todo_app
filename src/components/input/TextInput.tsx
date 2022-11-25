@@ -1,11 +1,12 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
 }
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   ({ className, error, ...rest }, ref) => {
     return (
       <input
@@ -20,5 +21,3 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     )
   }
 )
-
-export default TextInput

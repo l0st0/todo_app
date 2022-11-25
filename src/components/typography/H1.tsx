@@ -1,9 +1,9 @@
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface H1Props extends React.HTMLAttributes<HTMLHeadingElement> {}
+export interface H1Props extends React.HTMLAttributes<HTMLHeadingElement> {}
 
-const H1 = ({ children, className, ...rest }: H1Props) => {
+export const H1 = ({ children, className, ...rest }: H1Props) => {
   return (
     <h1
       {...rest}
@@ -13,5 +13,3 @@ const H1 = ({ children, className, ...rest }: H1Props) => {
     </h1>
   )
 }
-
-export default H1
