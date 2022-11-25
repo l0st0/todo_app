@@ -2,9 +2,15 @@ import React from 'react'
 import { TrashIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import { useDeleteTodo, useUpdateTodo } from '@/api'
-import { Button, CheckBox } from '@/components'
+import {
+  Button,
+  CheckBox,
+  Collapse,
+  CollapseDescription,
+  CollapseTitle,
+} from '@/components'
 import { Todo } from '@/types'
-import { dateTimeLeft } from '@/utils'
+import TodoDeadline from './TodoDeadline'
 
 interface TodoItemProps extends Todo {}
 
@@ -14,8 +20,6 @@ const TodoItem = (todo: TodoItemProps) => {
   const { mutate: deleteTodo, isLoading } = useDeleteTodo(listId)
   const { mutate: updateTodo } = useUpdateTodo(listId, id)
 
-  const deadLineTime = deadline ? `(${dateTimeLeft(deadline)} left)` : null
-
   return (
     <div className="flex items-start justify-between border-b border-base-content">
       <div className="flex flex-1">
@@ -24,26 +28,19 @@ const TodoItem = (todo: TodoItemProps) => {
           checked={isDone}
           onChange={(e) => updateTodo({ ...todo, isDone: e.target.checked })}
         />
-        <div
-          className={clsx(
-            'collapse w-full',
-            !isDone && description && 'collapse-arrow'
-          )}
-        >
-          <input type="checkbox" />
-          <p
+        <Collapse displayArrow={!isDone && !!description}>
+          <CollapseTitle
             className={clsx(
-              'collapse-title space-x-2 font-semibold',
+              'flex items-center justify-between gap-4',
               isDone ? 'text-gray-600 line-through' : 'text-base-content'
             )}
           >
             <span>{title}</span>
-            {!isDone && <span>{deadLineTime}</span>}
-          </p>
-          {!isDone && description && (
-            <p className="collapse-content">{description}</p>
-          )}
-        </div>
+            {!isDone && <TodoDeadline deadline={deadline} />}
+          </CollapseTitle>
+
+          <CollapseDescription>{description}</CollapseDescription>
+        </Collapse>
       </div>
 
       <Button

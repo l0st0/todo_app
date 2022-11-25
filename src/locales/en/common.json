@@ -25,6 +25,7 @@
     "input_placeholder": "Finish homework",
     "textarea_placeholder": "Get job",
     "deadline_placeholder": "Homework",
+    "after_deadline": "After deadline",
     "search_input_placeholder": "Search by title or description",
     "all": "All",
     "active": "Active",
