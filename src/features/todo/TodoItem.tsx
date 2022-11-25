@@ -4,14 +4,17 @@ import clsx from 'clsx'
 import { useDeleteTodo, useUpdateTodo } from '@/api'
 import { Button, CheckBox } from '@/components'
 import { Todo } from '@/types'
+import { dateTimeLeft } from '@/utils'
 
 interface TodoItemProps extends Todo {}
 
 const TodoItem = (todo: TodoItemProps) => {
-  const { title, description, isDone, listId, id } = todo
+  const { title, description, isDone, listId, id, deadline } = todo
 
   const { mutate: deleteTodo, isLoading } = useDeleteTodo(listId)
   const { mutate: updateTodo } = useUpdateTodo(listId, id)
+
+  const deadLineTime = deadline ? `(${dateTimeLeft(deadline)} left)` : null
 
   return (
     <div className="flex items-start justify-between border-b border-base-content">
@@ -30,11 +33,12 @@ const TodoItem = (todo: TodoItemProps) => {
           <input type="checkbox" />
           <p
             className={clsx(
-              'collapse-title font-semibold',
+              'collapse-title space-x-2 font-semibold',
               isDone ? 'text-gray-600 line-through' : 'text-base-content'
             )}
           >
-            {title}
+            <span>{title}</span>
+            <span>{deadLineTime}</span>
           </p>
           {!isDone && description && (
             <p className="collapse-content">{description}</p>

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { useCreateTodo } from '@/api'
 import {
   Button,
-  DatePicker,
+  DateInput,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -14,7 +14,7 @@ import {
   TextInput,
 } from '@/components'
 import { useRouterQuery } from '@/hooks'
-import { tDynamicString } from '@/utils'
+import { dateTimeInputFormat, tDynamicString } from '@/utils'
 import ErrorMessage from '../common/ErrorMessage'
 
 const scheme = z.object({
@@ -77,19 +77,18 @@ const TodoCreateForm = () => {
           <Controller
             name="deadline"
             control={control}
-            render={({ field }) => (
+            render={({ field: { value, onChange, ...rest } }) => (
               <FormControl>
-                <FormLabel htmlFor={field.name}>
+                <FormLabel htmlFor={rest.name}>
                   {t('labels.deadline')}
                 </FormLabel>
-                <DatePicker
-                  onChange={field.onChange}
-                  selected={field.value}
-                  showTimeSelect
-                  timeFormat="HH:mm"
-                  timeIntervals={15}
-                  timeCaption="time"
-                  dateFormat="MMMM d, yyyy h:mm aa"
+                <DateInput
+                  {...rest}
+                  dateValue={value}
+                  onDateChange={(date) => onChange(date)}
+                  id={rest.name}
+                  type="datetime-local"
+                  min={dateTimeInputFormat(new Date())}
                 />
               </FormControl>
             )}

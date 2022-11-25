@@ -22,7 +22,7 @@ export const useCreateTodo = (listId: string) => {
   return useMutation(
     (newTodo: CreateTodoBody) => todoServices.createTodo(listId, newTodo),
     {
-      onError: (error, newTodo, context) => {
+      onError: (error) => {
         console.error('error', error)
       },
       onSuccess: async () => {
