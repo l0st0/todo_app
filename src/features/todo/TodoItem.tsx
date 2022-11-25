@@ -24,7 +24,7 @@ const TodoItem = (todo: TodoItemProps) => {
     <div className="flex items-start justify-between border-b border-base-content">
       <div className="flex flex-1">
         <CheckBox
-          className="mt-4"
+          className="mt-4.5"
           checked={isDone}
           onChange={(e) => updateTodo({ ...todo, isDone: e.target.checked })}
         />
@@ -47,7 +47,7 @@ const TodoItem = (todo: TodoItemProps) => {
         iconOnly
         isLoading={isLoading}
         icon={<TrashIcon className="w-4 text-red-500" />}
-        className="btn-error btn-ghost mt-[6px]"
+        className="btn-error btn-ghost mt-1.5"
         onClick={() => deleteTodo(id)}
       />
     </div>

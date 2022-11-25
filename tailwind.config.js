@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        ['4.5']: '18px',
+      },
       fontFamily: {
         fredoka_one: ['var(--font-fredoka_one)', ...fontFamily.sans],
         open_sans: ['var(--font-open_sans)', ...fontFamily.sans],
