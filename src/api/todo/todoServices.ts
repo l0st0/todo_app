@@ -9,7 +9,6 @@ export const fetchTodos = async (id = '') => {
 }
 
 export const createTodo = async (id = '', body: CreateTodoBody) => {
-  console.log('body', body)
   const res = await todoListApi.post(`/list/${id}/todo`, {
     ...body,
     // mockapi throws random dates

@@ -24,7 +24,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
     }
 
     const formatedValue = React.useMemo(() => {
-      if (!dateValue) return dateValue
+      if (!dateValue) return ''
       if (type === 'date') return dateInputFormat(dateValue)
       if (type === 'datetime-local') return dateTimeInputFormat(dateValue)
     }, [dateValue])
