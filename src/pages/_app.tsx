@@ -3,6 +3,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { appWithTranslation } from 'next-i18next'
+import { Toast } from '@/components'
 import { RootLayout } from '@/layouts'
 import '@/styles/globals.css'
 
@@ -30,6 +31,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <RootLayout>
+            <Toast />
             <Component {...pageProps} />
           </RootLayout>
         </Hydrate>

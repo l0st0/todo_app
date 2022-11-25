@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError } from 'axios'
 import { CreateTodoBody, Todo } from '@/types'
@@ -33,6 +35,7 @@ export const useCreateTodo = (listId: string) => {
 }
 
 export const useDeleteTodo = (listId: string) => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -50,6 +53,7 @@ export const useDeleteTodo = (listId: string) => {
       onError: (error, todoId, context) => {
         console.error('error', error)
         queryClient.setQueryData(keys.todos(listId), context?.previousTodos)
+        toast.error(t('errors.remove_todo_error'))
       },
       onSettled: async () => {
         queryClient.invalidateQueries(keys.todos(listId))
@@ -59,6 +63,7 @@ export const useDeleteTodo = (listId: string) => {
 }
 
 export const useUpdateTodo = (listId: string, todoId: string) => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -78,6 +83,7 @@ export const useUpdateTodo = (listId: string, todoId: string) => {
       onError: (error, updatedTodo, context) => {
         console.error('error', error)
         queryClient.setQueryData(keys.todos(listId), context?.previousTodos)
+        toast.error(t('errors.update_todo_error'))
       },
       onSettled: async () => {
         queryClient.invalidateQueries(keys.todos(listId))
