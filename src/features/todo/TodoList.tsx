@@ -81,9 +81,11 @@ const TodoList = () => {
       <ErrorMessage className="text-center" display={isError} />
 
       <div ref={parent}>
-        {todos.length ? (
-          todos.map((todo) => <TodoItem key={todo.id} {...todo} />)
-        ) : (
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} {...todo} />
+        ))}
+
+        {!todos.length && !isLoading && (
           <div className="text-center">{emptyTodosMessage}</div>
         )}
       </div>

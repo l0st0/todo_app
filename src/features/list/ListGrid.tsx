@@ -25,6 +25,10 @@ const ListGrid = () => {
         {data.map((list) => (
           <ListItem key={list.id} {...list} />
         ))}
+
+        {!data.length && !isLoading && (
+          <div className="text-center">{t('list.empty_list')}</div>
+        )}
       </div>
     </div>
   )

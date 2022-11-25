@@ -16,7 +16,8 @@
   "list": {
     "button": "Create new list",
     "loading": "Loading lists",
-    "input_placeholder": "Homework"
+    "input_placeholder": "Homework",
+    "empty_list": "Create the first list."
   },
   "todo": {
     "create_button": "Add",
