@@ -7,11 +7,11 @@ import { Button, ButtonProps } from '@/components'
 
 const BackButton = ({ children, className }: ButtonProps) => {
   const { t } = useTranslation()
-  const { back } = useRouter()
+  const { push } = useRouter()
 
   return (
     <Button
-      onClick={() => back()}
+      onClick={() => push('/')}
       icon={<ArrowSmallLeftIcon className="w-6" />}
       className={twMerge('btn-outline', className)}
     >
