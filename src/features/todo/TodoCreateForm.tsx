@@ -51,7 +51,7 @@ const TodoCreateForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="items-top flex w-full flex-col"
       >
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <Controller
             name="title"
             control={control}

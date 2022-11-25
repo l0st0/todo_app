@@ -44,8 +44,8 @@ const TodoList = () => {
   const onFilterChange = (filter: Filter) => () => setFilter(filter)
 
   return (
-    <div className="mt-12 w-full space-y-2">
-      <div className="flex gap-4">
+    <div className="mt-12 w-full space-y-4">
+      <div className="flex flex-col gap-4 sm:flex-row">
         <TextInput
           placeholder={`${t('todo.search_input_placeholder')}...`}
           value={search}
@@ -55,8 +55,12 @@ const TodoList = () => {
         <div className="flex gap-2">
           {filterTypes.map((filterType) => (
             <Button
+              key={filterType}
               onClick={onFilterChange(filterType)}
-              className={clsx(filter === filterType && 'btn-primary')}
+              className={clsx(
+                'btn-sm sm:btn-md',
+                filter === filterType && 'btn-primary'
+              )}
             >
               {t(tDynamicString(filterType))}
             </Button>
