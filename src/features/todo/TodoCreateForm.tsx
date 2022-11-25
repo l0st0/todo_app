@@ -13,9 +13,12 @@ import {
   TextArea,
   TextInput,
 } from '@/components'
-import { useRouterQuery } from '@/hooks'
 import { dateTimeInputFormat, tDynamicString } from '@/utils'
 import ErrorMessage from '../common/ErrorMessage'
+
+interface TodoCreateFormProps {
+  listId: string
+}
 
 const scheme = z.object({
   title: z.string().min(1, { message: 'errors.isRequired' }),
@@ -25,10 +28,8 @@ const scheme = z.object({
 
 type Form = z.infer<typeof scheme>
 
-const TodoCreateForm = () => {
+const TodoCreateForm = ({ listId }: TodoCreateFormProps) => {
   const { t } = useTranslation()
-
-  const listId = useRouterQuery('id')
 
   const {
     control,

@@ -28,8 +28,8 @@ const Todo = () => {
         </div>
       </TopHeading>
 
-      <TodoCreateForm />
-      <TodoList />
+      <TodoCreateForm listId={listId} />
+      <TodoList listId={listId} />
     </>
   )
 }

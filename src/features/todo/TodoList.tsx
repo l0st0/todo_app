@@ -4,21 +4,22 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import clsx from 'clsx'
 import { useGetTodos } from '@/api'
 import { Button, TextInput } from '@/components'
-import { useRouterQuery } from '@/hooks'
 import { includesString, tDynamicString } from '@/utils'
 import ErrorMessage from '../common/ErrorMessage'
 import LoadingData from '../common/LoadingData'
 import TodoItem from './TodoItem'
 
+interface TodoListProps {
+  listId: string
+}
+
 type Filter = 'all' | 'done' | 'active'
 
-const TodoList = () => {
+const TodoList = ({ listId }: TodoListProps) => {
   const [search, setSearch] = React.useState('')
   const [filter, setFilter] = React.useState<Filter>('all')
 
   const { t } = useTranslation()
-
-  const listId = useRouterQuery('id')
 
   const [parent] = useAutoAnimate<HTMLDivElement>()
 
