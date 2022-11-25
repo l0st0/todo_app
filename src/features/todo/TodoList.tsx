@@ -43,6 +43,12 @@ const TodoList = () => {
   const filterTypes: Filter[] = ['all', 'active', 'done']
   const onFilterChange = (filter: Filter) => () => setFilter(filter)
 
+  const emptyTodosMessage = React.useMemo(() => {
+    if (filter === 'all') return t('todo.empty_todos_all')
+    if (filter === 'active') return t('todo.empty_todos_active')
+    if (filter === 'done') return t('todo.empty_todos_done')
+  }, [filter])
+
   return (
     <div className="mt-12 w-full space-y-4">
       <div className="flex flex-col gap-4 sm:flex-row">
@@ -75,9 +81,11 @@ const TodoList = () => {
       <ErrorMessage className="text-center" display={isError} />
 
       <div ref={parent}>
-        {todos.map((todo) => (
-          <TodoItem key={todo.id} {...todo} />
-        ))}
+        {todos.length ? (
+          todos.map((todo) => <TodoItem key={todo.id} {...todo} />)
+        ) : (
+          <div className="text-center">{emptyTodosMessage}</div>
+        )}
       </div>
     </div>
   )

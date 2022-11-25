@@ -27,6 +27,9 @@
     "search_input_placeholder": "Search by title or description",
     "all": "All",
     "active": "Active",
-    "done": "Done"
+    "done": "Done",
+    "empty_todos_all": "You should create some todos.",
+    "empty_todos_active": "You have done everything! Good job :)",
+    "empty_todos_done": "Finish your plans. Don't be lazy!"
   }
 }

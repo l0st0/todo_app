@@ -38,7 +38,7 @@ const TodoItem = (todo: TodoItemProps) => {
             )}
           >
             <span>{title}</span>
-            <span>{deadLineTime}</span>
+            {!isDone && <span>{deadLineTime}</span>}
           </p>
           {!isDone && description && (
             <p className="collapse-content">{description}</p>
