@@ -11,12 +11,15 @@
     "description": "Description",
     "deadline": "Deadline"
   },
-  "new_list": {
+  "list": {
     "button": "Create new list",
     "loading": "Loading lists"
   },
   "todo": {
     "create_button": "Add",
-    "loading": "Loading todos"
+    "loading": "Loading todos",
+    "all": "All",
+    "active": "Active",
+    "done": "Done"
   }
 }

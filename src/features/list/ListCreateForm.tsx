@@ -54,7 +54,7 @@ const ListCreateForm = () => {
         />
 
         <Button className="btn-primary" type="submit" isLoading={isLoading}>
-          {t('new_list.button')}
+          {t('list.button')}
         </Button>
       </form>
 

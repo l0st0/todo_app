@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import { useGetTodos } from '@/api'
 import { Button, TextInput } from '@/components'
 import { useRouterQuery } from '@/hooks'
-import { includesString } from '@/utils'
+import { includesString, tDynamicString } from '@/utils'
 import ErrorMessage from '../common/ErrorMessage'
 import LoadingData from '../common/LoadingData'
 import TodoItem from './TodoItem'
@@ -40,10 +40,11 @@ const TodoList = () => {
     return newData
   }, [data, search, filter])
 
+  const filterTypes: Filter[] = ['all', 'active', 'done']
   const onFilterChange = (filter: Filter) => () => setFilter(filter)
 
   return (
-    <div className="mb-4 mt-12 w-full">
+    <div className="mt-12 w-full space-y-2">
       <div className="flex gap-4">
         <TextInput
           placeholder="Search by title or description"
@@ -52,29 +53,19 @@ const TodoList = () => {
         />
 
         <div className="flex gap-2">
-          <Button
-            onClick={onFilterChange('all')}
-            className={clsx(filter === 'all' && 'btn-primary')}
-          >
-            All
-          </Button>
-          <Button
-            onClick={onFilterChange('active')}
-            className={clsx(filter === 'active' && 'btn-primary')}
-          >
-            Active
-          </Button>
-          <Button
-            onClick={onFilterChange('done')}
-            className={clsx(filter === 'done' && 'btn-primary')}
-          >
-            Done
-          </Button>
+          {filterTypes.map((filterType) => (
+            <Button
+              onClick={onFilterChange(filterType)}
+              className={clsx(filter === filterType && 'btn-primary')}
+            >
+              {t(tDynamicString(filterType))}
+            </Button>
+          ))}
         </div>
       </div>
 
       <LoadingData display={isLoading}>
-        <p>{t('new_list.loading')}...</p>
+        <p>{t('todo.loading')}...</p>
       </LoadingData>
 
       <ErrorMessage className="text-center" display={isError} />
