@@ -36,7 +36,10 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         value={formatedValue}
         onChange={onCustomChange}
         type={type}
-        className={twMerge('input-bordered input-primary input', className)}
+        className={twMerge(
+          'input-bordered input-primary input w-full',
+          className
+        )}
       />
     )
   }

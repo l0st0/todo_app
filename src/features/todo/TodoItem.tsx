@@ -20,6 +20,8 @@ const TodoItem = (todo: TodoItemProps) => {
   const { mutate: deleteTodo, isLoading } = useDeleteTodo(listId)
   const { mutate: updateTodo } = useUpdateTodo(listId, id)
 
+  const allowDescription = description && !isDone
+
   return (
     <div className="flex items-start justify-between border-b border-base-content">
       <div className="flex flex-1">
@@ -39,7 +41,9 @@ const TodoItem = (todo: TodoItemProps) => {
             {!isDone && <TodoDeadline deadline={deadline} />}
           </CollapseTitle>
 
-          <CollapseDescription>{description}</CollapseDescription>
+          {allowDescription && (
+            <CollapseDescription>{description}</CollapseDescription>
+          )}
         </Collapse>
       </div>
 
