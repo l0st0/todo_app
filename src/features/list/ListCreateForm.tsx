@@ -43,7 +43,12 @@ const ListCreateForm = () => {
           control={control}
           render={({ field }) => (
             <FormControl>
-              <TextInput {...field} id={field.name} error={!!errors?.name} />
+              <TextInput
+                {...field}
+                id={field.name}
+                error={!!errors?.name}
+                placeholder={t('list.input_placeholder')}
+              />
               <FormErrorMessage display={!!errors?.name}>
                 {t(tDynamicString(errors?.name?.message), {
                   label: t('labels.name'),

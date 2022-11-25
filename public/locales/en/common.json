@@ -13,11 +13,16 @@
   },
   "list": {
     "button": "Create new list",
-    "loading": "Loading lists"
+    "loading": "Loading lists",
+    "input_placeholder": "Homework"
   },
   "todo": {
     "create_button": "Add",
     "loading": "Loading todos",
+    "input_placeholder": "Finish homework",
+    "textarea_placeholder": "Get job",
+    "deadline_placeholder": "Homework",
+    "search_input_placeholder": "Search by title or description",
     "all": "All",
     "active": "Active",
     "done": "Done"

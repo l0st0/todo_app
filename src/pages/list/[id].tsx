@@ -36,7 +36,7 @@ const Todo = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common', 'home'])),
+    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
   },
 })
 

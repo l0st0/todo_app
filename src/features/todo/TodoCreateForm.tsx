@@ -60,7 +60,12 @@ const TodoCreateForm = () => {
                 <FormLabel htmlFor={field.name} required>
                   {t('labels.title')}
                 </FormLabel>
-                <TextInput {...field} id={field.name} error={!!errors?.title} />
+                <TextInput
+                  {...field}
+                  id={field.name}
+                  error={!!errors?.title}
+                  placeholder={t('todo.input_placeholder')}
+                />
                 <FormErrorMessage display={!!errors?.title}>
                   {t(tDynamicString(errors?.title?.message), {
                     label: t('labels.title'),
@@ -103,6 +108,7 @@ const TodoCreateForm = () => {
                 {...field}
                 id={field.name}
                 error={!!errors?.description}
+                placeholder={t('todo.textarea_placeholder')}
               />
             </FormControl>
           )}

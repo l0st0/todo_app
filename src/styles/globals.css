@@ -11,4 +11,9 @@
   h6 {
     @apply font-fredoka_one;
   }
+
+  input,
+  textarea {
+    @apply placeholder-gray-600;
+  }
 }

@@ -47,7 +47,7 @@ const TodoList = () => {
     <div className="mt-12 w-full space-y-2">
       <div className="flex gap-4">
         <TextInput
-          placeholder="Search by title or description"
+          placeholder={`${t('todo.search_input_placeholder')}...`}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
