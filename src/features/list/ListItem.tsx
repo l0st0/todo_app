@@ -8,10 +8,10 @@ import { dateTimeAgo } from '@/utils'
 
 interface ListItemProps extends List {}
 
-const ListItem = ({ id, name, createdAt }: ListItemProps) => {
+const ListItem = ({ id, name, createdAt, todos }: ListItemProps) => {
   const { mutate: deleteList, isLoading } = useDeleteList()
 
-  const onDeleteList = () => deleteList(String(id))
+  const onDeleteList = () => deleteList(id)
 
   return (
     <div className="flex justify-between gap-2 rounded-lg border border-base-content p-4">

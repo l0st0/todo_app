@@ -5,7 +5,8 @@
     "isError": "Oops, something went wrong! Please try again :(",
     "isRequired": "{{label}} is required.",
     "remove_todo_error": "Oops, there is some problem while deleting todo.",
-    "update_todo_error": "Oops, there is some problem while updating todo."
+    "update_todo_error": "Oops, there is some problem while updating todo.",
+    "remove_list_error": "Oops, there is some problem while deleting list."
   },
   "labels": {
     "name": "Name",

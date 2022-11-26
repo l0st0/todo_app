@@ -1,3 +1,5 @@
+import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { AxiosError } from 'axios'
 import { CreateListBody, List } from '@/types'
@@ -42,6 +44,7 @@ export const useCreateList = () => {
 }
 
 export const useDeleteList = () => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
 
   return useMutation((id: string) => todoServices.deleteList(id), {
@@ -52,9 +55,10 @@ export const useDeleteList = () => {
       queryClient.setQueryData(keys.lists, updatedLists)
       return { previousLists }
     },
-    onError: (error, todoId, context) => {
+    onError: (error, id, context) => {
       console.error('error', error)
       queryClient.setQueryData(keys.lists, context?.previousLists)
+      toast.error(t('errors.remove_list_error'))
     },
     onSettled: async () => {
       queryClient.invalidateQueries(keys.lists)
