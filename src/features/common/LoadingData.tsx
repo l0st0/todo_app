@@ -3,13 +3,13 @@ import { twMerge } from 'tailwind-merge'
 import { Spinner } from '@/components'
 
 interface LoadingDataProps extends React.HTMLAttributes<HTMLDivElement> {
-  display: boolean
+  display?: boolean
 }
 
 const LoadingData = ({
   children,
   className,
-  display,
+  display = true,
   ...rest
 }: LoadingDataProps) => {
   return (

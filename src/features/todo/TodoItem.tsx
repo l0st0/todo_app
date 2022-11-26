@@ -20,7 +20,7 @@ const TodoItem = (todo: TodoItemProps) => {
   const { mutate: deleteTodo, isLoading } = useDeleteTodo(listId)
   const { mutate: updateTodo } = useUpdateTodo(listId, id)
 
-  const allowDescription = description && !isDone
+  const allowDescription = !!description && !isDone
 
   return (
     <div className="flex items-start justify-between border-b border-base-content">
@@ -30,7 +30,7 @@ const TodoItem = (todo: TodoItemProps) => {
           checked={isDone}
           onChange={(e) => updateTodo({ ...todo, isDone: e.target.checked })}
         />
-        <Collapse displayArrow={!isDone && !!description}>
+        <Collapse displayArrow={allowDescription}>
           <CollapseTitle
             className={clsx(
               'flex items-center justify-between gap-4',

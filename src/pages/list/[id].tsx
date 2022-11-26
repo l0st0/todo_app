@@ -1,18 +1,30 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import Error from 'next/error'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import TodoCreateForm from 'src/features/todo/TodoCreateForm'
 import { useGetList } from '@/api'
 import { H1 } from '@/components'
-import { BackButton, TodoList } from '@/features'
+import { BackButton, LoadingData, TodoList } from '@/features'
 import { useRouterQuery } from '@/hooks'
 import { TopHeading } from '@/layouts'
 
 const Todo = () => {
+  const { t } = useTranslation()
   const listId = useRouterQuery('id')
 
-  const { data: list } = useGetList(listId)
+  const { data: list, isError, isLoading } = useGetList(listId)
+
+  if (isLoading)
+    return (
+      <LoadingData className="h-screen justify-center">
+        {t('list.loading_list')}...
+      </LoadingData>
+    )
+
+  if (isError) return <Error statusCode={404} />
 
   return (
     <>

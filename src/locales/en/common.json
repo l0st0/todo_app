@@ -15,7 +15,8 @@
   },
   "list": {
     "button": "Create new list",
-    "loading": "Loading lists",
+    "loading_lists": "Loading lists",
+    "loading_list": "Loading list",
     "input_placeholder": "Homework",
     "empty_list": "Create the first list."
   },

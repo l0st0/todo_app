@@ -16,7 +16,7 @@ const ListGrid = () => {
   return (
     <div className="my-4 w-full">
       <LoadingData display={isLoading}>
-        <p>{t('list.loading')}...</p>
+        <p>{t('list.loading_lists')}...</p>
       </LoadingData>
 
       <ErrorMessage display={isError} />
