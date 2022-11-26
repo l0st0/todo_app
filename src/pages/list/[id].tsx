@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import TodoCreateForm from 'src/features/todo/TodoCreateForm'
 import { useGetList } from '@/api'
@@ -34,7 +34,14 @@ const Todo = () => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
     ...(await serverSideTranslations(locale ?? 'en', ['common'])),
   },
